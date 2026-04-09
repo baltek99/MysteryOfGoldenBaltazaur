@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MysteryOfGoldenBaltazar</title>
+<style>
+body {
+		background-image: url('stone.jpg');
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: 100% 100%;
+  font-family: Arial, sans-serif;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Nagłówek */
+h1 {
+  margin-bottom: 40px;
+}
+
+/* Kontener */
+.input-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+/* ✨ Ładne inputy */
+.letter {
+  width: 55px;
+  height: 55px;
+  text-align: center;
+  font-size: 1.6rem;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  color: white;
+
+  box-shadow:
+    inset 2px 2px 5px rgba(0,0,0,0.6),
+    inset -2px -2px 5px rgba(255,255,255,0.05);
+
+  transition: all 0.2s ease;
+}
+
+/* focus efekt */
+.letter:focus {
+  transform: scale(1.1);
+  box-shadow:
+    0 0 10px rgba(200,200,200,0.5),
+    inset 2px 2px 5px rgba(0,0,0,0.6);
+}
+
+/* 🔥 SREBRNY PRZYCISK */
+button {
+  padding: 12px 40px;
+  font-size: 1.2rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+
+  background: linear-gradient(
+    90deg,
+    #8e9eab,
+    #eef2f3,
+    #bfc9d1,
+    #eef2f3,
+    #8e9eab
+  );
+
+  color: #1e1e1e;
+  font-weight: bold;
+
+  box-shadow:
+    0 4px 10px rgba(0,0,0,0.4),
+    inset 0 1px 2px rgba(255,255,255,0.5);
+
+  transition: all 0.25s ease;
+}
+
+/* hover efekt */
+button:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow:
+    0 6px 15px rgba(0,0,0,0.5),
+    0 0 10px rgba(255,255,255,0.3);
+}
+
+/* komunikat */
+#result {
+  margin-top: 20px;
+  font-size: 1.3rem;
+}
+/* fake input (label) */
+.fake {
+  pointer-events: none; /* nie można kliknąć */
+  user-select: none;    /* nie można zaznaczyć */
+  opacity: 0.8;
+  font-size: 1.3rem;
+  padding: 0 10px;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gold-gradient {
+  background: linear-gradient(
+    90deg,
+    #a8731e,
+    #d4a44d,
+    #ffe066,
+    #d4a44d,
+    #a8731e
+  );
+
+  background-size: 200%; /* 🔥 klucz do animacji */
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+
+  animation: goldShine 3s linear infinite;
+}
+
+@keyframes goldShine {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Wpisz hasło</h1>
+
+<div class="input-container">
+  <div class="letter fake">Wychowanie</div><div class="letter fake">Fizyczne</div>
+  <input class="letter x" maxlength="1">
+  <input class="letter x" maxlength="1">
+  <input class="letter x" maxlength="1">
+  <input class="letter x" maxlength="1">
+  <input class="letter x" maxlength="1">
+</div>
+
+<button onclick="checkWord()">SPRAWDŹ</button>
+
+<div id="result"></div>
+
+<script>
+function checkWord() {
+  const inputs = document.querySelectorAll(".x");
+  let word = "";
+
+  inputs.forEach(input => {
+    word += input.value.toUpperCase();
+  });
+
+  const correctWord = "7109W";
+
+  const result = document.getElementById("result");
+
+  if (word === correctWord) {
+    result.innerHTML = "<strong>BRAWO!!!</strong><br><br>Przypomnij sobie te wszystkie kosmiczne wyprawy Asteroidą...<br><br><strong>A tymczasem następna zagadka:</strong><ul><li>Nie złoty a szlachetny</li><li>Zakładany by dodać stylu i ciepłoty</li><li>Po desce robią to breloki</li><li>Na shotganie czy dj'ce i szukaj w tajnej skrytce</li></ul>";
+  result.className = "gold-gradient";
+  } else {
+    result.textContent = "NAPRAWDĘ NIE ROZPOZNAJESZ SREBRNEJ STRZAŁY?!";
+    result.style.color = "red";
+  }
+}
+</script>
+
+</body>
+</html>
